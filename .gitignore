@@ -1,0 +1,44 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Poetry specific files
+.poetry/
+poetry.lock
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# IDE specific files (for popular IDEs)
+.vscode/
+.idea/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# Logs
+*.log
+
+# Coverage reports
+.coverage
+coverage.xml
+*.cover
+
+# Dist and build directories (for packaging)
+dist/
+build/
+*.egg-info/
+
+# Configuration files for some tools
+*.env
+.env.*
+
+# Other unwanted files
+.DS_Store
+Thumbs.db
