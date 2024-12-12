@@ -1,0 +1,177 @@
+
+# Project Management API
+
+This is a simple FastAPI router for managing projects. It provides endpoints to create, read, update, and delete projects from the database.
+
+## Endpoints
+
+### POST `/`
+Create a new project.
+
+- **Request body**: `ProjectCreate` (Schema)
+- **Response body**: `Project` (Schema)
+- **Status codes**:
+  - `201 Created`: Project successfully created.
+  - `400 Bad Request`: Invalid data provided.
+
+#### Example Request:
+```json
+{
+  "name": "Project A",
+  "description": "Description of Project A"
+}
+```
+
+#### Example Response:
+```json
+{
+  "id": 1,
+  "name": "Project A",
+  "description": "Description of Project A"
+}
+```
+
+---
+
+### GET `/{project_id}`
+Retrieve a project by its ID.
+
+- **Request parameters**:
+  - `project_id` (int): The ID of the project.
+- **Response body**: `Project` (Schema)
+- **Status codes**:
+  - `200 OK`: Project found and returned.
+  - `404 Not Found`: Project not found.
+
+#### Example Request:
+```bash
+GET /projects/1
+```
+
+#### Example Response:
+```json
+{
+  "id": 1,
+  "name": "Project A",
+  "description": "Description of Project A"
+}
+```
+
+---
+
+### GET `/`
+Retrieve a list of projects.
+
+- **Query parameters**:
+  - `skip` (int, optional): Number of projects to skip. Default is `0`.
+  - `limit` (int, optional): Number of projects to return. Default is `100`.
+- **Response body**: List of `Project` (Schema)
+- **Status codes**:
+  - `200 OK`: List of projects returned.
+
+#### Example Request:
+```bash
+GET /projects?skip=0&limit=10
+```
+
+#### Example Response:
+```json
+[
+  {
+    "id": 1,
+    "name": "Project A",
+    "description": "Description of Project A"
+  },
+  {
+    "id": 2,
+    "name": "Project B",
+    "description": "Description of Project B"
+  }
+]
+```
+
+---
+
+### DELETE `/{project_id}`
+Delete a project by its ID.
+
+- **Request parameters**:
+  - `project_id` (int): The ID of the project to be deleted.
+- **Response body**: Message indicating the result of the deletion.
+- **Status codes**:
+  - `200 OK`: Project successfully deleted.
+  - `404 Not Found`: Project not found.
+
+#### Example Request:
+```bash
+DELETE /projects/1
+```
+
+#### Example Response:
+```json
+{
+  "message": "Project deleted successfully"
+}
+```
+
+---
+
+### PUT `/{project_id}`
+Update an existing project.
+
+- **Request parameters**:
+  - `project_id` (int): The ID of the project to be updated.
+  - **Request body**: `ProjectCreate` (Schema)
+- **Response body**: `Project` (Schema)
+- **Status codes**:
+  - `200 OK`: Project successfully updated.
+  - `404 Not Found`: Project not found.
+
+#### Example Request:
+```json
+{
+  "name": "Updated Project A",
+  "description": "Updated description of Project A"
+}
+```
+
+#### Example Response:
+```json
+{
+  "id": 1,
+  "name": "Updated Project A",
+  "description": "Updated description of Project A"
+}
+```
+
+## Dependencies
+
+- `FastAPI`
+- `SQLAlchemy`
+- `pydantic`
+- `typing`
+- `app.crud.project` (Project CRUD operations)
+- `app.schemas.project` (Project schemas)
+- `app.db.session` (Database session)
+
+## Installation
+
+To install the necessary dependencies, run the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+To run the FastAPI app, use the following command:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+This will start a development server at `http://127.0.0.1:8000`.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

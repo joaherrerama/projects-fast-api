@@ -18,4 +18,4 @@ app.include_router(projects.router, prefix="/api/projects", tags=["projects"])
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Project Management API"}
+    return {"message": "Welcome Orbify to the Project Management Service"}
